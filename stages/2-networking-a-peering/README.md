@@ -3,7 +3,7 @@
 This stage sets up the shared network infrastructure for the whole organization. It adopts the common “hub and spoke” reference design, which is well suited to multiple scenarios, and offers several advantages versus other designs:
 
 - the “hub” VPC centralizes external connectivity to on-prem or other cloud environments, and is ready to host cross-environment services like CI/CD, code repositories, and monitoring probes
-- the “spoke” VPCs allow partitioning workloads (e.g. by environment like in this setup), while still retaining controlled access to central connectivity and services
+- the “spoke” VPCs allow partitioning workloads while still retaining controlled access to central connectivity and services
 - Shared VPC in both hub and spokes splits management of network resources in specific (host) projects, while still allowing them to be consumed from workload (service) projects
 - the design also lends itself to easy DNS centralization, both from on-prem to cloud and from cloud to on-prem
 
