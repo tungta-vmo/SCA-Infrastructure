@@ -17,7 +17,7 @@
 # tfdoc:file:description Project factory stage resources.
 
 module "branch-pf-dev-sa" {
-  source     = "../../../modules/iam-service-account"
+  source     = "../../modules/iam-service-account"
   count      = var.fast_features.project_factory ? 1 : 0
   project_id = var.automation.project_id
   name       = "dev-resman-pf-0"
@@ -35,7 +35,7 @@ module "branch-pf-dev-sa" {
 }
 
 module "branch-pf-prod-sa" {
-  source     = "../../../modules/iam-service-account"
+  source     = "../../modules/iam-service-account"
   count      = var.fast_features.project_factory ? 1 : 0
   project_id = var.automation.project_id
   name       = "prod-resman-pf-0"
@@ -53,7 +53,7 @@ module "branch-pf-prod-sa" {
 }
 
 module "branch-pf-dev-gcs" {
-  source        = "../../../modules/gcs"
+  source        = "../../modules/gcs"
   count         = var.fast_features.project_factory ? 1 : 0
   project_id    = var.automation.project_id
   name          = "dev-resman-pf-0"
@@ -67,7 +67,7 @@ module "branch-pf-dev-gcs" {
 }
 
 module "branch-pf-prod-gcs" {
-  source        = "../../../modules/gcs"
+  source        = "../../modules/gcs"
   count         = var.fast_features.project_factory ? 1 : 0
   project_id    = var.automation.project_id
   name          = "prod-resman-pf-0"

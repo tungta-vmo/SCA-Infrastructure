@@ -17,7 +17,7 @@
 # tfdoc:file:description Networking stage resources.
 
 module "branch-network-folder" {
-  source = "../../../modules/folder"
+  source = "../../modules/folder"
   parent = "organizations/${var.organization.id}"
   name   = "Networking"
   group_iam = local.groups.gcp-network-admins == null ? {} : {
@@ -46,7 +46,7 @@ module "branch-network-folder" {
 }
 
 module "branch-network-prod-folder" {
-  source = "../../../modules/folder"
+  source = "../../modules/folder"
   parent = module.branch-network-folder.id
   name   = "Production"
   iam = {
@@ -65,7 +65,7 @@ module "branch-network-prod-folder" {
 }
 
 module "branch-network-dev-folder" {
-  source = "../../../modules/folder"
+  source = "../../modules/folder"
   parent = module.branch-network-folder.id
   name   = "Development"
   iam = {
@@ -86,7 +86,7 @@ module "branch-network-dev-folder" {
 # automation service account and bucket
 
 module "branch-network-sa" {
-  source       = "../../../modules/iam-service-account"
+  source       = "../../modules/iam-service-account"
   project_id   = var.automation.project_id
   name         = "prod-resman-net-0"
   display_name = "Terraform resman networking service account."
@@ -102,7 +102,7 @@ module "branch-network-sa" {
 }
 
 module "branch-network-gcs" {
-  source        = "../../../modules/gcs"
+  source        = "../../modules/gcs"
   project_id    = var.automation.project_id
   name          = "prod-resman-net-0"
   prefix        = var.prefix

@@ -24,7 +24,7 @@ moved {
 }
 
 module "branch-pf-dev-cicd-repo" {
-  source = "../../../modules/source-repository"
+  source = "../../modules/source-repository"
   for_each = (
     try(local.cicd_repositories.project_factory_dev.type, null) == "sourcerepo"
     ? { 0 = local.cicd_repositories.project_factory_dev }
@@ -61,7 +61,7 @@ moved {
 }
 
 module "branch-pf-prod-cicd-repo" {
-  source = "../../../modules/source-repository"
+  source = "../../modules/source-repository"
   for_each = (
     try(local.cicd_repositories.project_factory_prod.type, null) == "sourcerepo"
     ? { 0 = local.cicd_repositories.project_factory_prod }
@@ -100,7 +100,7 @@ moved {
 }
 
 module "branch-pf-dev-sa-cicd" {
-  source = "../../../modules/iam-service-account"
+  source = "../../modules/iam-service-account"
   for_each = (
     try(local.cicd_repositories.project_factory_dev.name, null) != null
     ? { 0 = local.cicd_repositories.project_factory_dev }
@@ -148,7 +148,7 @@ moved {
 }
 
 module "branch-pf-prod-sa-cicd" {
-  source = "../../../modules/iam-service-account"
+  source = "../../modules/iam-service-account"
   for_each = (
     try(local.cicd_repositories.project_factory_prod.name, null) != null
     ? { 0 = local.cicd_repositories.project_factory_prod }

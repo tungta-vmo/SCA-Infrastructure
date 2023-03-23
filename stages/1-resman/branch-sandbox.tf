@@ -17,7 +17,7 @@
 # tfdoc:file:description Sandbox stage resources.
 
 module "branch-sandbox-folder" {
-  source = "../../../modules/folder"
+  source = "../../modules/folder"
   count  = var.fast_features.sandbox ? 1 : 0
   parent = "organizations/${var.organization.id}"
   name   = "Sandbox"
@@ -39,7 +39,7 @@ module "branch-sandbox-folder" {
 }
 
 module "branch-sandbox-gcs" {
-  source        = "../../../modules/gcs"
+  source        = "../../modules/gcs"
   count         = var.fast_features.sandbox ? 1 : 0
   project_id    = var.automation.project_id
   name          = "dev-resman-sbox-0"
@@ -53,7 +53,7 @@ module "branch-sandbox-gcs" {
 }
 
 module "branch-sandbox-sa" {
-  source       = "../../../modules/iam-service-account"
+  source       = "../../modules/iam-service-account"
   count        = var.fast_features.sandbox ? 1 : 0
   project_id   = var.automation.project_id
   name         = "dev-resman-sbox-0"

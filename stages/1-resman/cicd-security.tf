@@ -19,7 +19,7 @@
 # source repository
 
 module "branch-security-cicd-repo" {
-  source = "../../../modules/source-repository"
+  source = "../../modules/source-repository"
   for_each = (
     try(local.cicd_repositories.security.type, null) == "sourcerepo"
     ? { 0 = local.cicd_repositories.security }
@@ -51,7 +51,7 @@ module "branch-security-cicd-repo" {
 # SA used by CI/CD workflows to impersonate automation SAs
 
 module "branch-security-sa-cicd" {
-  source = "../../../modules/iam-service-account"
+  source = "../../modules/iam-service-account"
   for_each = (
     try(local.cicd_repositories.security.name, null) != null
     ? { 0 = local.cicd_repositories.security }

@@ -30,7 +30,7 @@ locals {
 }
 
 module "organization" {
-  source          = "../../../modules/organization"
+  source          = "../../modules/organization"
   organization_id = "organizations/${var.organization.id}"
   # IAM additive bindings, granted via the restricted Organization Admin custom
   # role assigned in stage 00; they need to be additive to avoid conflicts

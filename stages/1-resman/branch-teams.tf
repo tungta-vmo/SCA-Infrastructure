@@ -21,7 +21,7 @@
 ############### top-level Teams branch and automation resources ###############
 
 module "branch-teams-folder" {
-  source = "../../../modules/folder"
+  source = "../../modules/folder"
   count  = var.fast_features.teams ? 1 : 0
   parent = "organizations/${var.organization.id}"
   name   = "Teams"
@@ -40,7 +40,7 @@ module "branch-teams-folder" {
 }
 
 module "branch-teams-sa" {
-  source       = "../../../modules/iam-service-account"
+  source       = "../../modules/iam-service-account"
   count        = var.fast_features.teams ? 1 : 0
   project_id   = var.automation.project_id
   name         = "prod-resman-teams-0"
@@ -52,7 +52,7 @@ module "branch-teams-sa" {
 }
 
 module "branch-teams-gcs" {
-  source        = "../../../modules/gcs"
+  source        = "../../modules/gcs"
   count         = var.fast_features.teams ? 1 : 0
   project_id    = var.automation.project_id
   name          = "prod-resman-teams-0"
@@ -68,7 +68,7 @@ module "branch-teams-gcs" {
 ################## per-team folders and automation resources ##################
 
 module "branch-teams-team-folder" {
-  source   = "../../../modules/folder"
+  source   = "../../modules/folder"
   for_each = var.fast_features.teams ? coalesce(var.team_folders, {}) : {}
   parent   = module.branch-teams-folder.0.id
   name     = each.value.descriptive_name
@@ -83,7 +83,7 @@ module "branch-teams-team-folder" {
 }
 
 module "branch-teams-team-sa" {
-  source       = "../../../modules/iam-service-account"
+  source       = "../../modules/iam-service-account"
   for_each     = var.fast_features.teams ? coalesce(var.team_folders, {}) : {}
   project_id   = var.automation.project_id
   name         = "prod-teams-${each.key}-0"
@@ -99,7 +99,7 @@ module "branch-teams-team-sa" {
 }
 
 module "branch-teams-team-gcs" {
-  source        = "../../../modules/gcs"
+  source        = "../../modules/gcs"
   for_each      = var.fast_features.teams ? coalesce(var.team_folders, {}) : {}
   project_id    = var.automation.project_id
   name          = "prod-teams-${each.key}-0"
@@ -115,7 +115,7 @@ module "branch-teams-team-gcs" {
 # per-team environment folders where project factory SAs can create projects
 
 module "branch-teams-team-dev-folder" {
-  source   = "../../../modules/folder"
+  source   = "../../modules/folder"
   for_each = var.fast_features.teams ? coalesce(var.team_folders, {}) : {}
   parent   = module.branch-teams-team-folder[each.key].id
   # naming: environment descriptive name
@@ -140,7 +140,7 @@ module "branch-teams-team-dev-folder" {
 }
 
 module "branch-teams-team-prod-folder" {
-  source   = "../../../modules/folder"
+  source   = "../../modules/folder"
   for_each = var.fast_features.teams ? coalesce(var.team_folders, {}) : {}
   parent   = module.branch-teams-team-folder[each.key].id
   # naming: environment descriptive name

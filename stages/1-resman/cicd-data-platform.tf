@@ -19,7 +19,7 @@
 # source repositories
 
 module "branch-dp-dev-cicd-repo" {
-  source = "../../../modules/source-repository"
+  source = "../../modules/source-repository"
   for_each = (
     try(local.cicd_repositories.data_platform_dev.type, null) == "sourcerepo"
     ? { 0 = local.cicd_repositories.data_platform_dev }
@@ -55,7 +55,7 @@ module "branch-dp-dev-cicd-repo" {
 }
 
 module "branch-dp-prod-cicd-repo" {
-  source = "../../../modules/source-repository"
+  source = "../../modules/source-repository"
   for_each = (
     try(local.cicd_repositories.data_platform_prod.type, null) == "sourcerepo"
     ? { 0 = local.cicd_repositories.data_platform_prod }
@@ -89,7 +89,7 @@ module "branch-dp-prod-cicd-repo" {
 # SAs used by CI/CD workflows to impersonate automation SAs
 
 module "branch-dp-dev-sa-cicd" {
-  source = "../../../modules/iam-service-account"
+  source = "../../modules/iam-service-account"
   for_each = (
     try(local.cicd_repositories.data_platform_dev.name, null) != null
     ? { 0 = local.cicd_repositories.data_platform_dev }
@@ -132,7 +132,7 @@ module "branch-dp-dev-sa-cicd" {
 }
 
 module "branch-dp-prod-sa-cicd" {
-  source = "../../../modules/iam-service-account"
+  source = "../../modules/iam-service-account"
   for_each = (
     try(local.cicd_repositories.data_platform_prod.name, null) != null
     ? { 0 = local.cicd_repositories.data_platform_prod }
